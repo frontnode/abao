@@ -89,7 +89,7 @@ class MockService
           code = reqToMock.defaultCode  if reqToMock.defaultCode
           example = reqToMock.example()  if _.isFunction(reqToMock.example)
           mock = reqToMock.mock()  if _.isFunction(reqToMock.mock)
-          res.status(code).send mock
+          res.status(code).send if mock then mock else example
 
       http.createServer(app).listen port, ->
         files = files.join(',')
